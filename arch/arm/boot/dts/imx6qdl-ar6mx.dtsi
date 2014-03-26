@@ -1,0 +1,219 @@
+/*
+ *
+ * Copyright (C) 2014 Jasbir Matharu
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ */
+
+/{
+	aliases {
+		mxcfb0 = &mxcfb1;
+	};
+
+	memory {
+		reg = <0x10000000 0x40000000>;
+	};
+
+	regulators {
+		compatible = "simple-bus";
+
+		reg_usb_h1_vbus: usb_h1_vbus {
+			compatible = "regulator-fixed";
+			regulator-name = "usb_h1_vbus";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+			enable-active-high;
+			gpio = <&gpio5 13 0>;
+		};
+	};
+
+	mxcfb1: fb@0 {
+		compatible = "fsl,mxc_sdc_fb";
+		disp_dev = "hdmi";
+		interface_pix_fmt = "RGB24";
+		mode_str ="";
+		default_bpp = <32>;
+		int_clk = <0>;
+		late_init = <0>;
+		status = "disabled";
+	};
+
+	sound-hdmi {
+		compatible = "fsl,imx6q-audio-hdmi",
+				 "fsl,imx-audio-hdmi";
+		model = "imx-audio-hdmi";
+		hdmi-controller = <&hdmi_audio>;
+	};
+
+	v4l2_out {
+		compatible = "fsl,mxc_v4l2_output";
+		status = "okay";
+	};
+
+};
+
+&hdmi_audio {
+	status = "okay";
+};
+
+
+&hdmi_core {
+	ipu_id = <0>;
+	disp_id = <0>;
+	status = "okay";
+};
+
+
+&hdmi_video {
+	fsl,phy_reg_vlev = <0x0294>;
+	fsl,phy_reg_cksymtx = <0x800d>;
+	status = "okay";
+};
+
+&i2c2 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c1_2>;
+	status = "okay";
+};
+
+&i2c2 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c2_2>;
+	status = "okay";
+
+	hdmi: edid@50 {
+		compatible = "fsl,imx6-hdmi-i2c";
+		reg = <0x50>;
+	};
+};
+
+&i2c3 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_i2c3_2>;
+	status = "okay";
+
+	s35390a: s35390a@30 {
+		compatible = "s35390a";
+		reg = <0x30>;
+        status = "disabled";
+	};
+};
+
+&fec {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_enet>;
+	phy-mode = "rgmii";
+	status = "okay";
+};
+
+&iomuxc {
+
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_hog>;
+
+	imx6-ar6mx {
+	
+	pinctrl_hog: hoggrp {
+			fsl,pins = <
+				MX6QDL_PAD_DISP0_DAT19__GPIO5_IO13  0x80000000   /* USBV1_EN   */
+				MX6QDL_PAD_SD3_DAT5__GPIO7_IO00     0x80000000   /* SD3_CD   */
+				MX6QDL_PAD_SD3_DAT4__GPIO7_IO01     0x80000000   /* SD3_WP   */
+				MX6QDL_PAD_GPIO_4__GPIO1_IO04       0x80000000   /* STATUS LED */
+				MX6QDL_PAD_GPIO_5__GPIO1_IO05       0x80000000   /* SATA LED */
+			>;
+	};
+
+	pinctrl_enet: enetgrp {
+			fsl,pins = <
+				MX6QDL_PAD_RGMII_RXC__RGMII_RXC	        0x1b0b0
+				MX6QDL_PAD_RGMII_RD0__RGMII_RD0	        0x1b0b0
+				MX6QDL_PAD_RGMII_RD1__RGMII_RD1	        0x1b0b0
+				MX6QDL_PAD_RGMII_RD2__RGMII_RD2	        0x1b0b0
+				MX6QDL_PAD_RGMII_RD3__RGMII_RD3	        0x1b0b0
+				MX6QDL_PAD_RGMII_RX_CTL__RGMII_RX_CTL   0x1b0b0
+				MX6QDL_PAD_RGMII_TXC__RGMII_TXC	        0x1b0b0
+				MX6QDL_PAD_RGMII_TD0__RGMII_TD0	        0x1b0b0
+				MX6QDL_PAD_RGMII_TD1__RGMII_TD1	        0x1b0b0
+				MX6QDL_PAD_RGMII_TD2__RGMII_TD2	        0x1b0b0
+				MX6QDL_PAD_RGMII_TD3__RGMII_TD3	        0x1b0b0
+				MX6QDL_PAD_RGMII_TX_CTL__RGMII_TX_CTL   0x1b0b0
+				MX6QDL_PAD_ENET_REF_CLK__ENET_TX_CLK	0x1b0b0
+				MX6QDL_PAD_ENET_MDIO__ENET_MDIO	        0x1b0b0
+				MX6QDL_PAD_ENET_MDC__ENET_MDC	        0x1b0b0
+				MX6QDL_PAD_ENET_CRS_DV__GPIO1_IO25      0x80000000/* GE_nRST	*/
+				MX6QDL_PAD_ENET_RXD1__GPIO1_IO26	    0x80000000/* CSI_RST_B  */
+				MX6QDL_PAD_ENET_TX_EN__GPIO1_IO28       0x80000000/* PHY_INT	*/
+			>;
+		};
+
+	pinctrl_uart1: uart1grp {
+		fsl,pins = <				
+			MX6QDL_PAD_EIM_D19__UART1_CTS_B     0x1b0b1
+			MX6QDL_PAD_EIM_D23__UART1_DCD_B     0x1b0b1
+			MX6QDL_PAD_EIM_D25__UART1_DSR_B     0x1b0b1
+			MX6QDL_PAD_EIM_D24__UART1_DTR_B     0x1b0b1
+			MX6QDL_PAD_EIM_EB3__UART1_RI_B      0x1b0b1
+			MX6QDL_PAD_EIM_D20__UART1_RTS_B     0x1b0b1
+			MX6QDL_PAD_SD3_DAT6__UART1_RX_DATA  0x1b0b1
+			MX6QDL_PAD_SD3_DAT7__UART1_TX_DATA  0x1b0b1
+			>;
+		};
+
+	pinctrl_uart4: uart4grp {
+		fsl,pins = <				
+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA  0x1b0b1
+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA  0x1b0b1
+			>;
+		};
+
+	pinctrl_usdhc3: usdhc3grp {
+		fsl,pins = <
+			MX6QDL_PAD_SD3_CMD__SD3_CMD       0x17059
+			MX6QDL_PAD_SD3_CLK__SD3_CLK       0x10059
+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0    0x17059
+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1    0x17059
+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2    0x17059
+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3    0x17059
+			>;
+		};
+	};
+};
+
+&uart1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart1>;
+	fsl,uart-has-rtscts;
+	status = "okay";
+};
+
+
+&uart4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart4>;
+	status = "okay"; 
+};
+
+&usdhc3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usdhc3>;
+	cd-gpios = <&gpio7 0 0>;
+	wp-gpios = <&gpio7 1 0>;
+	keep-power-in-suspend;
+	status = "okay";
+};
+
+&usbh1 {
+	vbus-supply = <&reg_usb_h1_vbus>;
+	clock-names = "phy";
+	status = "okay";
+};
+
+&sata {
+	status = "okay";
+};
