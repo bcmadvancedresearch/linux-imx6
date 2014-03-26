@@ -192,6 +192,7 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6q-sbc6x.dtb \
 	imx6q-udoo.dtb \
 	imx6q-wandboard.dtb \
+	imx6q-ar6mx.dtb \
 	imx6sl-evk.dtb \
 	imx6sl-evk-btwifi.dtb \
 	imx6sl-evk-csi.dtb \
