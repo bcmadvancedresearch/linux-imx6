@@ -1,0 +1,26 @@
+/*
+ *
+ * Copyright (C) 2014 Jasbir Matharu
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ *
+ */
+
+/dts-v1/;
+#include "imx6q.dtsi"
+#include "imx6qdl-ar6mx.dtsi"
+
+/{
+    model = "BCM AR6MXQ Board";
+    compatible = "bcmcom,imx6q-ar6mx", "fsl,imx6q";
+};
+
+&usbotg {
+    status = "disabled";
+};
+
+&mxcfb1 {
+    status = "okay";
+};
