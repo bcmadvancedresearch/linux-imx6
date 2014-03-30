@@ -25,9 +25,30 @@
 			regulator-name = "usb_h1_vbus";
 			regulator-min-microvolt = <5000000>;
 			regulator-max-microvolt = <5000000>;
+		};
+
+		reg_hub_pwr_usb1: hub_pwr_usb1 {
+			compatible = "regulator-fixed";
+			regulator-name = "hub_pwr_usb1";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
 			enable-active-high;
+			regulator-always-on;
+			regulator-boot-on;
 			gpio = <&gpio5 13 0>;
 		};
+
+		reg_hub_pwr_usb2: hub_pwr_usb2 {
+			compatible = "regulator-fixed";
+			regulator-name = "hub_pwr_usb2";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+			enable-active-high;
+			regulator-always-on;
+			regulator-boot-on;
+			gpio = <&gpio5 14 0>;
+		};
+
 	};
 
 	mxcfb1: fb@0 {
@@ -122,6 +143,7 @@
 	pinctrl_hog: hoggrp {
 			fsl,pins = <
 				MX6QDL_PAD_DISP0_DAT19__GPIO5_IO13  0x80000000   /* USBV1_EN   */
+				MX6QDL_PAD_DISP0_DAT20__GPIO5_IO14  0x80000000   /* USBV2_EN   */
 				MX6QDL_PAD_SD3_DAT5__GPIO7_IO00     0x80000000   /* SD3_CD   */
 				MX6QDL_PAD_SD3_DAT4__GPIO7_IO01     0x80000000   /* SD3_WP   */
 				MX6QDL_PAD_GPIO_4__GPIO1_IO04       0x80000000   /* STATUS LED */
@@ -204,7 +226,6 @@
 	pinctrl-0 = <&pinctrl_usdhc3>;
 	cd-gpios = <&gpio7 0 0>;
 	wp-gpios = <&gpio7 1 0>;
-	keep-power-in-suspend;
 	status = "okay";
 };
 
