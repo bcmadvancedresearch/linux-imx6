@@ -49,6 +49,24 @@
 			gpio = <&gpio5 14 0>;
 		};
 
+		leds {
+			compatible = "gpio-leds";
+
+			led0: status {
+				label = "status";
+				gpios = <&gpio1 4 0>;
+				default-state = "off";
+				linux,default-trigger = "heartbeat";
+			};
+
+			led1: user {
+				label = "user";
+				gpios = <&gpio1 5 0>;
+				default-state = "off";
+			};
+
+		};
+
 	};
 
 	mxcfb1: fb@0 {
