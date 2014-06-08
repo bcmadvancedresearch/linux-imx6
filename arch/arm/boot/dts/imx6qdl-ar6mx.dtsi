@@ -166,6 +166,8 @@
 				MX6QDL_PAD_SD3_DAT4__GPIO7_IO01     0x80000000   /* SD3_WP   */
 				MX6QDL_PAD_GPIO_4__GPIO1_IO04       0x80000000   /* STATUS LED */
 				MX6QDL_PAD_GPIO_5__GPIO1_IO05       0x80000000   /* SATA LED */
+				MX6QDL_PAD_GPIO_16__GPIO7_IO11      0x80000000   /* PCIE ENABLE */
+				MX6QDL_PAD_GPIO_17__GPIO7_IO12      0x80000000   /* PCIE RST */
 			>;
 	};
 
@@ -254,5 +256,10 @@
 };
 
 &sata {
+	status = "okay";
+};
+
+&pcie {
+	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
 	status = "okay";
 };
