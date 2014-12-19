@@ -164,8 +164,10 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6dl-sabresd-ldo.dtb \
 	imx6dl-sabresd-pf200.dtb \
 	imx6dl-sabresd-hdcp.dtb \
+	imx6dl-ar6mx.dtb \
 	imx6dl-ar6mxcs-ds.dtb \
 	imx6dl-ar6mxcs-pa.dtb \
+	imx6dl-ar6mx.dtb \
 	imx6dl-wandboard.dtb \
 	imx6q-arm2.dtb \
 	imx6q-cubox-i.dtb \
