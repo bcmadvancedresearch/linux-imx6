@@ -9,12 +9,12 @@
  */
 
 /dts-v1/;
-#include "imx6q.dtsi"
+#include "imx6dl.dtsi"
 #include "imx6qdl-ar6mx.dtsi"
 
 /{
-    model = "BCM AR6MXQ Board";
-    compatible = "bcmcom,imx6q-ar6mx", "fsl,imx6q";
+    model = "BCM AR6MXS Board";
+    compatible = "bcmcom,imx6dl-ar6mx", "fsl,imx6dl";
 };
 
 &usbotg {
@@ -23,8 +23,4 @@
 
 &mxcfb1 {
     status = "okay";
-};
-
-&sata {
-	status = "okay";
 };
