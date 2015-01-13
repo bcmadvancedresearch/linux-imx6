@@ -289,11 +289,11 @@
 
 &ldb {
 	ipu_id = <1>;
-	disp_id = <1>;
+	disp_id = <0>;
 	ext_ref = <1>;
-	mode = "sep1";
+	mode = "sin0";
 	sec_ipu_id = <1>;
-	sec_disp_id = <0>;
+	sec_disp_id = <1>;
 	status = "okay";
 };
 
