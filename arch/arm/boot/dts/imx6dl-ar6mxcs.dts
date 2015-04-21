@@ -1,0 +1,19 @@
+/*
+ * Copyright (C) 2014 BCM Advanced Research
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * published by the Free Software Foundation.
+ */
+
+/dts-v1/;
+
+#include "imx6dl.dtsi"
+#include "imx6qdl-ar6mxcs.dtsi"
+#include "imx6dl-ar6mxcs.dtsi"
+
+/ {
+	memory {
+		reg = <0x10000000 0x20000000>;
+	};
+};
