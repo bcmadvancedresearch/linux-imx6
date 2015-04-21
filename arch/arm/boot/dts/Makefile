@@ -366,6 +366,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6dl-udoo.dtb \
 	imx6dl-sabresd-enetirq.dtb \
 	imx6dl-ar6mx.dtb \
+	imx6dl-ar6mxcs.dtb \
 	imx6dl-ar6mxcs-ds.dtb \
 	imx6dl-ar6mxcs-pa.dtb \
 	imx6dl-ar6mx.dtb \
