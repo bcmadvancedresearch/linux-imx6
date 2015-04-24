@@ -11,6 +11,14 @@
 /{
 	aliases {
 		mxcfb0 = &mxcfb1;
+		mxcfb1 = &mxcfb2;
+		mxcfb2 = &mxcfb3;
+		mxcfb3 = &mxcfb4;
+
+		vesa_1024x768 = &vesa_1024x768;
+		fg_1024x600 = &fg_1024x600;
+		vesa_1024x768_2 = &vesa_1024x768_2;
+		fg_1024x600_2 = &fg_1024x600_2;
 	};
 
 	memory {
@@ -71,10 +79,43 @@
 
 	mxcfb1: fb@0 {
 		compatible = "fsl,mxc_sdc_fb";
+		disp_dev = "ldb";
+		interface_pix_fmt = "RGB666";
+		mode_str ="LDB-XGA";
+		default_bpp = <16>;
+		int_clk = <0>;
+		late_init = <0>;
+		status = "disabled";
+	};
+
+	mxcfb2: fb@1 {
+		compatible = "fsl,mxc_sdc_fb";
 		disp_dev = "hdmi";
 		interface_pix_fmt = "RGB24";
-		mode_str ="";
-		default_bpp = <32>;
+		mode_str ="1920x1080M@60";
+		default_bpp = <24>;
+		int_clk = <0>;
+		late_init = <0>;
+		status = "disabled";
+	};
+
+	mxcfb3: fb@2 {
+		compatible = "fsl,mxc_sdc_fb";
+		disp_dev = "lcd";
+		interface_pix_fmt = "RGB565";
+		mode_str ="CLAA-WVGA";
+		default_bpp = <16>;
+		int_clk = <0>;
+		late_init = <0>;
+		status = "disabled";
+	};
+
+	mxcfb4: fb@3 {
+		compatible = "fsl,mxc_sdc_fb";
+		disp_dev = "ldb";
+		interface_pix_fmt = "RGB666";
+		mode_str ="LDB-XGA";
+		default_bpp = <16>;
 		int_clk = <0>;
 		late_init = <0>;
 		status = "disabled";
@@ -157,7 +198,7 @@
 	pinctrl-0 = <&pinctrl_hog>;
 
 	imx6-ar6mx {
-	
+
 	pinctrl_hog: hoggrp {
 			fsl,pins = <
 				MX6QDL_PAD_DISP0_DAT19__GPIO5_IO13  0x80000000   /* USBV1_EN   */
@@ -195,7 +236,7 @@
 		};
 
 	pinctrl_uart1: uart1grp {
-		fsl,pins = <				
+		fsl,pins = <
 			MX6QDL_PAD_EIM_D19__UART1_CTS_B     0x1b0b1
 			MX6QDL_PAD_EIM_D23__UART1_DCD_B     0x1b0b1
 			MX6QDL_PAD_EIM_D25__UART1_DSR_B     0x1b0b1
@@ -208,7 +249,7 @@
 		};
 
 	pinctrl_uart4: uart4grp {
-		fsl,pins = <				
+		fsl,pins = <
 			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA  0x1b0b1
 			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA  0x1b0b1
 			>;
@@ -238,7 +279,7 @@
 &uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
-	status = "okay"; 
+	status = "okay";
 };
 
 &usdhc3 {
@@ -253,6 +294,73 @@
 	vbus-supply = <&reg_usb_h1_vbus>;
 	clock-names = "phy";
 	status = "okay";
+};
+
+&ldb {
+	status = "okay";
+
+	lvds-channel@0 {
+		fsl,data-mapping = "spwg";
+		fsl,data-width = <18>;
+		primary;
+		status = "okay";
+
+		display-timings {
+			fg_1024x600: FG100131DNSWAGL1 {
+				clock-frequency = <50400000>;
+				hactive = <1024>;
+				vactive = <600>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <5>;
+				vfront-porch = <10>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+			vesa_1024x768: hsd100pxn1 {
+				clock-frequency = <65000000>;
+				hactive = <1024>;
+				vactive = <768>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <21>;
+				vfront-porch = <7>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+		};
+	};
+
+	lvds-channel@1 {
+		fsl,data-mapping = "spwg";
+		fsl,data-width = <18>;
+		status = "okay";
+
+		display-timings {
+			fg_1024x600_2: FG100131DNSWAGL1_2 {
+				clock-frequency = <50400000>;
+				hactive = <1024>;
+				vactive = <600>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <5>;
+				vfront-porch = <10>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+			vesa_1024x768_2: hsd100pxn1_2 {
+				clock-frequency = <65000000>;
+				hactive = <1024>;
+				vactive = <768>;
+				hback-porch = <220>;
+				hfront-porch = <40>;
+				vback-porch = <21>;
+				vfront-porch = <7>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
+		};
+	};
 };
 
 &pcie {
