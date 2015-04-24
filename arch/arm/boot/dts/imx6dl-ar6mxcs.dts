@@ -17,3 +17,13 @@
 		reg = <0x10000000 0x20000000>;
 	};
 };
+
+&ldb {
+	lvds-channel@0 {
+		crtc = "ipu1-di0";
+	};
+
+	lvds-channel@1 {
+		crtc = "ipu1-di1";
+	};
+};
