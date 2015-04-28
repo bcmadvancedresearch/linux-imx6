@@ -135,6 +135,13 @@
 
 };
 
+&fec {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_enet>;
+	phy-mode = "rgmii";
+	status = "okay";
+};
+
 &hdmi_audio {
 	status = "okay";
 };
@@ -183,13 +190,6 @@
 		reg = <0x30>;
         status = "disabled";
 	};
-};
-
-&fec {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_enet>;
-	phy-mode = "rgmii";
-	status = "okay";
 };
 
 &iomuxc {
@@ -268,34 +268,6 @@
 	};
 };
 
-&uart1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart1>;
-	fsl,uart-has-rtscts;
-	status = "okay";
-};
-
-
-&uart4 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_uart4>;
-	status = "okay";
-};
-
-&usdhc3 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_usdhc3>;
-	cd-gpios = <&gpio7 0 0>;
-	wp-gpios = <&gpio7 1 0>;
-	status = "okay";
-};
-
-&usbh1 {
-	vbus-supply = <&reg_usb_h1_vbus>;
-	clock-names = "phy";
-	status = "okay";
-};
-
 &ldb {
 	status = "okay";
 
@@ -365,5 +337,38 @@
 
 &pcie {
 	reset-gpio = <&gpio7 12 GPIO_ACTIVE_LOW>;
+	status = "okay";
+};
+
+&ssi2 {
+	fsl,mode = "i2s-slave";
+	status = "okay";
+};
+
+&uart1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart1>;
+	fsl,uart-has-rtscts;
+	status = "okay";
+};
+
+
+&uart4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_uart4>;
+	status = "okay";
+};
+
+&usdhc3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usdhc3>;
+	cd-gpios = <&gpio7 0 0>;
+	wp-gpios = <&gpio7 1 0>;
+	status = "okay";
+};
+
+&usbh1 {
+	vbus-supply = <&reg_usb_h1_vbus>;
+	clock-names = "phy";
 	status = "okay";
 };
