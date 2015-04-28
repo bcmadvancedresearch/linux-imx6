@@ -51,6 +51,12 @@
 			regulator-max-microvolt = <5000000>;
 		};
 
+		reg_audio: wm8960_supply {
+			compatible = "regulator-fixed";
+			regulator-name = "wm8960-supply";
+			regulator-always-on;
+		};
+
 		reg_bl0_pwr: bl0_pwr {
 			compatible = "regulator-fixed";
 			regulator-name = "bl0_pwr";
@@ -72,6 +78,23 @@
 
 	gpio-keys {
 		compatible = "gpio-keys";
+	};
+
+	sound {
+		compatible = "fsl,imx6q-ar6mx-wm8960",
+			   "fsl,imx-audio-wm8960";
+		model = "wm8960-audio";
+		ssi-controller = <&ssi2>;
+		audio-codec = <&codec>;
+		audio-routing =
+			"Headphone Jack", "HP_L",
+			"Headphone Jack", "HP_R",
+			"LINPUT1", "MICB",
+			"MICB", "AMIC";
+		mux-int-port = <2>;
+		mux-ext-port = <3>;
+		hp-det-gpios = <&gpio1 20 1>;
+		mic-det-gpios = <&gpio1 16 1>;
 	};
 
 	sound-hdmi {
@@ -225,6 +248,17 @@
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_i2c1_2>;
 	status = "okay";
+
+	codec: wm8960@1a {
+		compatible = "wlf,wm8960";
+		reg = <0x1a>;
+		clocks = <&clks 201>;
+		DCVDD-supply = <&reg_audio>;
+		DBVDD-supply = <&reg_audio>;
+		AVDD-supply = <&reg_audio>;
+		MICVDD-supply = <&reg_audio>;
+		shared_lrclk;
+       };
 };
 
 &i2c2 {
@@ -274,6 +308,9 @@
 				MX6QDL_PAD_GPIO_5__GPIO1_IO05 0x80000000
 				MX6QDL_PAD_GPIO_9__GPIO1_IO09 0x80000000
 				MX6QDL_PAD_GPIO_2__GPIO1_IO02 0x80000000
+				MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1    0x130b0
+				MX6QDL_PAD_SD1_DAT0__GPIO1_IO16 0x80000000
+				MX6QDL_PAD_SD1_CLK__GPIO1_IO20 0x80000000
 			>;
 		};
 
@@ -374,7 +411,7 @@
 	status = "okay";
 };
 
-&ssi1 {
+&ssi2 {
 	fsl,mode = "i2s-slave";
 	status = "okay";
 };
