@@ -485,7 +485,7 @@ static int wm8960_add_widgets(struct snd_soc_codec *codec)
 		if (strcmp(w->name, "OUT3 VMID") == 0)
 			wm8960->out3 = w;
 	}
-	
+
 	return 0;
 }
 
@@ -1102,6 +1102,8 @@ static int wm8960_i2c_probe(struct i2c_client *i2c,
 {
 	struct wm8960_data *pdata = dev_get_platdata(&i2c->dev);
 	struct wm8960_priv *wm8960;
+	const struct device_node *np = i2c->dev.of_node;
+	bool shared_lrclk = 0;
 	int ret;
 
 	wm8960 = devm_kzalloc(&i2c->dev, sizeof(struct wm8960_priv),
