@@ -17,10 +17,6 @@
     compatible = "bcmcom,imx6q-ar6mx", "fsl,imx6q";
 };
 
-&usbotg {
-    status = "disabled";
-};
-
 &ldb {
 	lvds-channel@0 {
 		crtc = "ipu2-di0";
