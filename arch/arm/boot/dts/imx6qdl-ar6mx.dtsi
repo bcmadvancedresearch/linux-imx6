@@ -35,6 +35,15 @@
 			regulator-max-microvolt = <5000000>;
 		};
 
+		reg_usb_otg_vbus: usb_otg_vbus {
+			compatible = "regulator-fixed";
+			regulator-name = "usb_otg_vbus";
+			regulator-min-microvolt = <5000000>;
+			regulator-max-microvolt = <5000000>;
+			gpio = <&gpio1 7 0>;
+			enable-active-high;
+		};
+
 		reg_hub_pwr_usb1: hub_pwr_usb1 {
 			compatible = "regulator-fixed";
 			regulator-name = "hub_pwr_usb1";
@@ -249,6 +258,7 @@
 				MX6QDL_PAD_GPIO_5__GPIO1_IO05       0x80000000   /* SATA LED */
 				MX6QDL_PAD_GPIO_16__GPIO7_IO11      0x80000000   /* PCIE ENABLE */
 				MX6QDL_PAD_GPIO_17__GPIO7_IO12      0x80000000   /* PCIE RST */
+				MX6QDL_PAD_GPIO_7__GPIO1_IO07      0x80000000   /* OTG_PW_EN */
 				MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1    0x130b0
 			>;
 	};
@@ -400,6 +410,20 @@
 	status = "okay";
 };
 
+&usbh1 {
+	vbus-supply = <&reg_usb_h1_vbus>;
+	clock-names = "phy";
+	status = "okay";
+};
+
+&usbotg {
+	vbus-supply = <&reg_usb_otg_vbus>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_usbotg_1>;
+	disable-over-current;
+	status = "okay";
+};
+
 &usdhc3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usdhc3>;
@@ -408,8 +432,3 @@
 	status = "okay";
 };
 
-&usbh1 {
-	vbus-supply = <&reg_usb_h1_vbus>;
-	clock-names = "phy";
-	status = "okay";
-};
