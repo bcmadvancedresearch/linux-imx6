@@ -1060,6 +1060,28 @@ static int wm8960_probe(struct snd_soc_codec *codec)
 		return ret;
 	}
 
+	ret = wm8960_reset(codec);
+	if (ret < 0) {
+		dev_err(codec->dev, "Failed to issue reset\n");
+		return ret;
+	}
+
+	wm8960->set_bias_level(codec, SND_SOC_BIAS_STANDBY);
+
+	/* Latch the update bits */
+	snd_soc_update_bits(codec, WM8960_LINVOL, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_RINVOL, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LADC, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_RADC, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LDAC, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_RDAC, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LOUT1, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_ROUT1, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LOUT2, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_ROUT2, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LOUTMIX, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_ROUTMIX, 0x100, 0x100);
+
 	snd_soc_add_codec_controls(codec, wm8960_snd_controls,
 				     ARRAY_SIZE(wm8960_snd_controls));
 	wm8960_add_widgets(codec);
