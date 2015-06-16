@@ -276,7 +276,7 @@
 		compatible = "pixcir,pixcir_tangoc";
 		reg = <0x5c>;
 		interrupt-parent = <&gpio6>;
-		interrupts = <8 0>;
+		interrupts = <8 2>;
 		attb-gpio = <&gpio6 8 1>;
 		reset-gpio = <&gpio2 0 0>;
 		touchscreen-size-x = <1024>;
