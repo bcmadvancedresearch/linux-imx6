@@ -374,6 +374,17 @@
 				hsync-len = <60>;
 				vsync-len = <10>;
 			};
+			g070_800x480: g070y2-l01 {
+				clock-frequency = <29500000>;
+				hactive = <800>;
+				vactive = <480>;
+				hback-porch = <72>;
+				hfront-porch = <60>;
+				vback-porch = <5>;
+				vfront-porch = <5>;
+				hsync-len = <60>;
+				vsync-len = <10>;
+			};
 		};
 	};
 
