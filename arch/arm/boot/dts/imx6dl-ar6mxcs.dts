@@ -20,7 +20,11 @@
 
 &ldb {
 	lvds-channel@0 {
+		fsl,data-width = <24>;
 		crtc = "ipu1-di0";
+		display-timings {
+			native-mode = <&g070_800x480>;
+		};
 	};
 
 	lvds-channel@1 {
