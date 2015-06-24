@@ -31,3 +31,8 @@
 		crtc = "ipu1-di1";
 	};
 };
+
+&mxcfb1 {
+	interface_pix_fmt = "RGB24";
+	default_bpp = <24>;
+};
