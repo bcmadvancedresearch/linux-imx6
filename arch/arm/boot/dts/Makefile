@@ -123,6 +123,7 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6dl-sabresd-ldo.dtb \
 	imx6dl-sabresd-pf200.dtb \
 	imx6dl-ar6mx.dtb \
+	imx6dl-ar6mxcs.dtb \
 	imx6dl-ar6mxcs-ds.dtb \
 	imx6dl-ar6mxcs-pa.dtb \
 	imx6dl-ar6mx.dtb \
