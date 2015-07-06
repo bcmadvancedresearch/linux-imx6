@@ -271,17 +271,6 @@
 		compatible = "fsl,imx6-hdmi-i2c";
 		reg = <0x50>;
 	};
-
-	pixcir_ts@5c {
-		compatible = "pixcir,pixcir_tangoc";
-		reg = <0x5c>;
-		interrupt-parent = <&gpio6>;
-		interrupts = <8 2>;
-		attb-gpio = <&gpio6 8 1>;
-		reset-gpio = <&gpio2 0 0>;
-		touchscreen-size-x = <1024>;
-		touchscreen-size-y = <600>;
-	};
 };
 
 &i2c3 {
