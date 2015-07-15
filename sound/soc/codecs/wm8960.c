@@ -1001,6 +1001,8 @@ static int wm8960_probe(struct snd_soc_codec *codec)
 	snd_soc_update_bits(codec, WM8960_ROUT1, 0x100, 0x100);
 	snd_soc_update_bits(codec, WM8960_LOUT2, 0x100, 0x100);
 	snd_soc_update_bits(codec, WM8960_ROUT2, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_LOUTMIX, 0x100, 0x100);
+	snd_soc_update_bits(codec, WM8960_ROUTMIX, 0x100, 0x100);
 
 	snd_soc_add_codec_controls(codec, wm8960_snd_controls,
 				     ARRAY_SIZE(wm8960_snd_controls));
