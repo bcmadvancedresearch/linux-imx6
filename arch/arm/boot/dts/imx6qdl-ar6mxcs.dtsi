@@ -93,7 +93,6 @@
 			"MICB", "AMIC";
 		mux-int-port = <2>;
 		mux-ext-port = <3>;
-		hp-det-gpios = <&gpio1 20 0>;
 		mic-det-gpios = <&gpio1 16 1>;
 	};
 
