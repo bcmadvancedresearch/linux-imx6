@@ -20,19 +20,18 @@
 
 &ldb {
 	lvds-channel@0 {
-		fsl,data-width = <24>;
-		crtc = "ipu1-di0";
+		crtc = "ipu1-di1";
 		display-timings {
-			native-mode = <&g070_800x480>;
+			native-mode = <&fg_1024x600>;
 		};
 	};
 
 	lvds-channel@1 {
-		crtc = "ipu1-di1";
+		crtc = "ipu1-di0";
 	};
 };
 
 &mxcfb1 {
-	interface_pix_fmt = "RGB24";
-	default_bpp = <24>;
+	interface_pix_fmt = "RGB666";
+	default_bpp = <16>;
 };
