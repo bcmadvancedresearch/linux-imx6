@@ -183,7 +183,7 @@
 
 &audmux {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_audmux_2>;
+	pinctrl-0 = <&pinctrl_audmux>;
 	status = "okay";
 };
 
@@ -274,6 +274,15 @@
 				MX6QDL_PAD_GPIO_17__GPIO7_IO12      0x80000000   /* PCIE RST */
 				MX6QDL_PAD_GPIO_7__GPIO1_IO07      0x80000000   /* OTG_PW_EN */
 				MX6QDL_PAD_CSI0_MCLK__CCM_CLKO1    0x130b0
+			>;
+	};
+
+		pinctrl_audmux: audmuxgrp {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT7__AUD3_RXD		0x130b0
+				MX6QDL_PAD_CSI0_DAT4__AUD3_TXC		0x130b0
+				MX6QDL_PAD_CSI0_DAT5__AUD3_TXD		0x110b0
+				MX6QDL_PAD_CSI0_DAT6__AUD3_TXFS		0x130b0
 			>;
 	};
 
