@@ -103,6 +103,8 @@
 #define AR6MX_VER_B2			IMX_GPIO_NR(4, 27)
 #define AR6MX_VER_B3			IMX_GPIO_NR(4, 28)
 #define AR6MX_OTG_PWR_EN		IMX_GPIO_NR(1, 7)
+#define AR6MX_MIPICSI_PWN	IMX_GPIO_NR(6, 0)
+#define AR6MX_MIPICSI_RST	IMX_GPIO_NR(1, 26)
 
 extern char *gp_reg_id;
 extern char *soc_reg_id;
@@ -295,6 +297,44 @@ static struct fec_platform_data fec_data __initdata = {
 	.phy			= PHY_INTERFACE_MODE_RGMII,
 };
 
+static void mx6q_mipi_powerdown(int powerdown)
+{
+	if (powerdown)
+		gpio_set_value(AR6MX_MIPICSI_PWN, 1);
+	else
+		gpio_set_value(AR6MX_MIPICSI_PWN, 0);
+
+	msleep(2);
+}
+
+static void mx6q_mipi_sensor_io_init(void)
+{
+	/* Camera reset */
+	gpio_request(AR6MX_MIPICSI_RST, "cam-reset");
+	gpio_direction_output(AR6MX_MIPICSI_RST, 1);
+
+	/* Camera power down */
+	gpio_request(AR6MX_MIPICSI_PWN, "cam-pwdn");
+	gpio_direction_output(AR6MX_MIPICSI_PWN, 1);
+	msleep(5);
+	gpio_set_value(AR6MX_MIPICSI_PWN, 0);
+	msleep(5);
+	gpio_set_value(AR6MX_MIPICSI_RST, 0);
+	msleep(1);
+	gpio_set_value(AR6MX_MIPICSI_RST, 1);
+	msleep(5);
+	gpio_set_value(AR6MX_MIPICSI_PWN, 1);
+
+}
+
+static struct fsl_mxc_camera_platform_data mipi_csi2_data = {
+	.mclk = 24000000,
+	.mclk_source = 0,
+	.csi = 1,
+	.io_init = mx6q_mipi_sensor_io_init,
+	.pwdn = mx6q_mipi_powerdown,
+};
+
 static int mx6q_ar6mx_spi_cs[] = {
 	AR6MX_ECSPI3_CS0,
 };
@@ -407,6 +447,10 @@ static struct i2c_board_info mxc_i2c0_board_info[] __initdata = {
 		I2C_BOARD_INFO("wm8960", 0x1a),
 	},
 	#endif
+	{
+		I2C_BOARD_INFO("ov5640_mipi", 0x3c),
+		.platform_data = (void *)&mipi_csi2_data,
+	},
 };
 
 static struct i2c_board_info mxc_i2c1_board_info[] __initdata = {
@@ -830,13 +874,22 @@ static struct fsl_mxc_capture_platform_data capture_data[] = {
 		.csi = 0,
 		.ipu = 0,
 		.mclk_source = 0,
-		.is_mipi = 0,
+		.is_mipi = 1,
 	}, {
 		.csi = 1,
 		.ipu = 0,
 		.mclk_source = 0,
 		.is_mipi = 1,
 	},
+};
+
+static struct mipi_csi2_platform_data mipi_csi2_pdata = {
+	.ipu_id	 = 0,
+	.csi_id = 1,
+	.v_channel = 0,
+	.lanes = 2,
+	.dphy_clk = "mipi_pllref_clk",
+	.pixel_clk = "emi_clk",
 };
 
 static const struct imx_pcie_platform_data mx6_ar6mx_pcie_data __initconst = {
@@ -960,6 +1013,7 @@ static void __init mx6_board_init(void)
 	imx6q_add_v4l2_output(0);
 	imx6q_add_v4l2_capture(0, &capture_data[0]);
 	imx6q_add_v4l2_capture(1, &capture_data[1]);
+	imx6q_add_mipi_csi2(&mipi_csi2_pdata);
 
 	if (!board_is_mx6_reva())
 		imx6q_add_imx_snvs_rtc();
