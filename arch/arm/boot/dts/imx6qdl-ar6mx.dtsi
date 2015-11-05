@@ -280,6 +280,14 @@
 		compatible = "fsl,imx6-hdmi-i2c";
 		reg = <0x50>;
 	};
+
+	nfc: nfc@28 {
+		compatible = "nxp,pn547";
+		reg = <0x28>;
+		clock-frequency = <400000>;
+		interrupt-gpios = <&gpio2 0 0>;
+		enable-gpios = <&gpio2 1 0>;
+	};
 };
 
 &i2c3 {
