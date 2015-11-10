@@ -475,6 +475,7 @@
 &usdhc3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_usdhc3>;
+	status = "okay";
 };
 
 &usdhc4 {
