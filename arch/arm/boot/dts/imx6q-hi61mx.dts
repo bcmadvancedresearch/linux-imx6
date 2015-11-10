@@ -46,7 +46,7 @@
 };
 
 &usbotg {
-    status = "disabled";
+    status = "okay";
 };
 
 &mxcfb1 {
