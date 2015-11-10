@@ -1,0 +1,70 @@
+/*
+ */
+
+/dts-v1/;
+
+#include "imx6q.dtsi"
+#include "imx6qdl-hi61mx.dtsi"
+
+/ {
+	model = "BCM HI61MXQ Board";
+	compatible = "bcmtwn,imx6q-hi61mxq", "fsl,imx6q";
+
+	memory {
+		reg = <0x10000000 0x80000000>;
+	};
+
+	/*
+	gpio-keys {
+		compatible = "gpio-keys";
+
+		power {
+			label = "Power Button";
+			gpios = <&gpio6 15 GPIO_ACTIVE_LOW>;
+			linux,code = <116>;
+			gpio-key,wakeup;
+		};
+	};
+	*/
+
+};
+
+&dcic1 {
+	dcic_id = <0>;
+	dcic_mux = "dcic-lvds0";
+	status = "okay";
+};
+
+&ldb {
+	lvds-channel@0 {
+		crtc = "ipu2-di0";
+	};
+
+	lvds-channel@1 {
+		crtc = "ipu2-di1";
+	};
+};
+
+&usbotg {
+    status = "disabled";
+};
+
+&mxcfb1 {
+    status = "okay";
+};
+
+&mxcfb2 {
+	status = "disabled";
+};
+
+&mxcfb3 {
+	status = "disabled";
+};
+
+&mxcfb4 {
+	status = "disabled";
+};
+
+&sata {
+	status = "disabled";
+};
