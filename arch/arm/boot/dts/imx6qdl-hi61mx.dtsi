@@ -72,6 +72,15 @@
 			regulator-always-on;
 		};
 
+		reg_lvds_pwr: lvds_pwr {
+			compatible = "regulator-fixed";
+			regulator-name = "lvds_pwr";
+			gpio = <&gpio4 11 0>;
+			enable-active-high;
+			regulator-always-on;
+			regulator-boot-on;
+		};
+
 		leds {
 			compatible = "gpio-leds";
 
