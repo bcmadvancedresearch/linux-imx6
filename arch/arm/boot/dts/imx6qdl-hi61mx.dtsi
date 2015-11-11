@@ -363,12 +363,23 @@
 	status = "okay";
 
 	lvds-channel@0 {
-		fsl,data-mapping = "spwg";
-		fsl,data-width = <18>;
+		fsl,data-mapping = "jeida";
+		fsl,data-width = <24>;
 		primary;
 		status = "okay";
 
 		display-timings {
+			nec_1280x800: LQ101K1LY04 {
+				clock-frequency = <65000000>;
+				hactive = <1280>;
+				vactive = <800>;
+				hback-porch = <20>;
+				hfront-porch = <20>;
+				vback-porch = <5>;
+				vfront-porch = <5>;
+				hsync-len = <10>;
+				vsync-len = <2>;
+			};
 			fg_1024x600: FG100131DNSWAGL1 {
 				clock-frequency = <50400000>;
 				hactive = <1024>;
