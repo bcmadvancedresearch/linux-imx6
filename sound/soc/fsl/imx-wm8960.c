@@ -401,12 +401,13 @@ static int imx_hifi_startup(struct snd_pcm_substream *substream)
 	int ret = 0;
 
 	data->is_stream_opened[tx] = true;
+#if 0
 	if (data->is_stream_opened[tx] != sai->is_stream_opened[tx] ||
 	    data->is_stream_opened[!tx] != sai->is_stream_opened[!tx]) {
 		data->is_stream_opened[tx] = false;
 		return -EBUSY;
 	}
-
+#endif
 	if (!data->is_codec_master) {
 		ret = snd_pcm_hw_constraint_list(substream->runtime, 0,
 				SNDRV_PCM_HW_PARAM_RATE, &imx_wm8960_rate_constraints);
