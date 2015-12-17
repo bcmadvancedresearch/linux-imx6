@@ -369,7 +369,6 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6dl-ar6mxcs.dtb \
 	imx6dl-ar6mxcs-ds.dtb \
 	imx6dl-ar6mxcs-pa.dtb \
-	imx6dl-ar6mx.dtb \
 	imx6dl-wandboard.dtb \
 	imx6dl-wandboard-revb1.dtb \
 	imx6dqscm-1gb-qwks-rev2-fix-ldo.dtb \
