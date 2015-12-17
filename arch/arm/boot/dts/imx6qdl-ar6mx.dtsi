@@ -170,13 +170,14 @@
 		compatible = "fsl,imx6q-ar6mx-wm8960",
 			   "fsl,imx-audio-wm8960";
 		model = "wm8960-audio";
-		ssi-controller = <&ssi2>;
+		cpu-dai = <&ssi2>;
 		audio-codec = <&codec>;
+		codec-master;
+		hp-det = <4 0>;
 		audio-routing =
-			"Headphone Jack", "HP_L",
-			"Headphone Jack", "HP_R",
-			"LINPUT1", "MICB",
-			"MICB", "AMIC";
+			"Headset Jack", "HP_L",
+			"Headset Jack", "HP_R",
+			"LINPUT1", "MICB";
 		mux-int-port = <2>;
 		mux-ext-port = <3>;
 		hp-det-gpios = <&gpio7 8 1>;
@@ -258,7 +259,8 @@
 		DBVDD-supply = <&reg_audio>;
 		AVDD-supply = <&reg_audio>;
 		MICVDD-supply = <&reg_audio>;
-		shared_lrclk;
+		clock-names = "mclk";
+		wlf,shared_lrclk;
   };
 
 	ov564x_mipi: ov564x_mipi@3c { /* i2c1 driver */
