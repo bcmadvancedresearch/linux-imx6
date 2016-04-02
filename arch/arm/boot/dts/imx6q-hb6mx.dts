@@ -1,6 +1,6 @@
 /*
  *
- * Copyright (C) 2014 Jasbir Matharu
+ * Copyright (C) 2015 Frodo Lai
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -9,21 +9,21 @@
  */
 
 /dts-v1/;
-#include "imx6dl.dtsi"
-#include "imx6qdl-ar6mx.dtsi"
+#include "imx6q.dtsi"
+#include "imx6qdl-hb6mx.dtsi"
 
 /{
-    model = "BCM AR6MXS Board";
-    compatible = "bcmcom,imx6dl-ar6mx", "fsl,imx6dl";
+    model = "BCM HB6MXQ Board";
+    compatible = "bcmcom,imx6q-hb6mx", "fsl,imx6q";
 };
 
 &ldb {
 	lvds-channel@0 {
-		crtc = "ipu1-di1";
+		crtc = "ipu2-di0";
 	};
 
 	lvds-channel@1 {
-		crtc = "ipu1-di0";
+		crtc = "ipu2-di1";
 	};
 };
 
@@ -32,5 +32,17 @@
 };
 
 &mxcfb2 {
+	status = "okay";
+};
+
+&mxcfb3 {
+	status = "okay";
+};
+
+&mxcfb4 {
+	status = "okay";
+};
+
+&sata {
 	status = "okay";
 };

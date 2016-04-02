@@ -166,6 +166,10 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6dl-sabresd-ldo.dtb \
 	imx6dl-sabresd-pf200.dtb \
 	imx6dl-sabresd-hdcp.dtb \
+	imx6dl-ar6mx.dtb \
+	imx6dl-ar6mxcs.dtb \
+	imx6dl-ar6mxcs-ds.dtb \
+	imx6dl-ar6mxcs-pa.dtb \
 	imx6dl-wandboard.dtb \
 	imx6q-arm2.dtb \
 	imx6q-ar6mx.dtb \
@@ -193,6 +197,8 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6q-sbc6x.dtb \
 	imx6q-udoo.dtb \
 	imx6q-wandboard.dtb \
+	imx6q-ar6mx.dtb \
+	imx6q-hb6mx.dtb \
 	imx6sl-evk.dtb \
 	imx6sl-evk-btwifi.dtb \
 	imx6sl-evk-csi.dtb \
