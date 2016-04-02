@@ -575,7 +575,6 @@
 
 &usbh1 {
 	vbus-supply = <&reg_usb_h1_vbus>;
-	clock-names = "phy";
 	status = "okay";
 };
 
