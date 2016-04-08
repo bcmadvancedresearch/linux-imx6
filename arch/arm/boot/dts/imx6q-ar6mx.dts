@@ -36,11 +36,11 @@
 };
 
 &mxcfb3 {
-	status = "okay";
+	status = "disabled";
 };
 
 &mxcfb4 {
-	status = "okay";
+	status = "disabled";
 };
 
 &sata {
