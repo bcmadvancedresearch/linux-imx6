@@ -1195,7 +1195,7 @@ static void evdev_disconnect(struct input_handle *handle)
 	put_device(&evdev->dev);
 }
 
-static void evdev_match(struct input_handle *handle, struct input_dev *dev)
+static bool evdev_match(struct input_handle *handle, struct input_dev *dev)
 {
 	/* Avoid EETI USB touchscreens */
 	#define VID_EETI 0x0EEF

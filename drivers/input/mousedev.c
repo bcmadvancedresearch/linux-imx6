@@ -1051,7 +1051,7 @@ static const struct input_device_id mousedev_ids[] = {
 	{ },	/* Terminating entry */
 };
 
-static void mousedev_match(struct input_handle *handle, struct input_dev *dev)
+static bool mousedev_match(struct input_handle *handle, struct input_dev *dev)
 {
 	/* Avoid EETI USB touchscreens */
 	#define VID_EETI 0x0EEF
