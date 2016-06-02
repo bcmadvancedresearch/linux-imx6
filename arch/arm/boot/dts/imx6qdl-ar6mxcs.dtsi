@@ -577,7 +577,7 @@
 
 &pcie {
 	reset-gpio = <&gpio7 11 0>;
-	status = "disabled";
+	status = "okay";
 };
 
 
