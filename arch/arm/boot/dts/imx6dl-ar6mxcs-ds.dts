@@ -18,6 +18,25 @@
 	};
 };
 
+&ldb {
+        lvds-channel@0 {
+                fsl,data-width = <18>;
+                crtc = "ipu1-di0";
+                display-timings {
+                        native-mode = <&fg_1024x600>;
+                };
+        };
+
+        lvds-channel@1 {
+                crtc = "ipu1-di1";
+        };
+};
+
+&mxcfb1 {
+        interface_pix_fmt = "RGB24";
+        default_bpp = <24>;
+};
+
 &i2c2 {
 	pixcir_ts@5c {
 		compatible = "pixcir,pixcir_tangoc";
