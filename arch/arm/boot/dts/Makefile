@@ -174,6 +174,7 @@ dtb-$(CONFIG_ARCH_MXC) += \
 	imx6q-arm2.dtb \
 	imx6q-ar6mx.dtb \
 	imx6q-gr6mx.dtb \
+	imx6q-gr60mxd.dtb \
 	imx6q-cubox-i.dtb \
 	imx6q-phytec-pbab01.dtb \
 	imx6q-sabreauto.dtb \
