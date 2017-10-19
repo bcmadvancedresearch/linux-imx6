@@ -1,0 +1,37 @@
+/*
+ * Copyright (C) 2014-2017 BCM Advanced Research
+ *
+ * The code contained herein is licensed under the GNU General Public
+ * License. You may obtain a copy of the GNU General Public License
+ * Version 2 or later at the following locations:
+ *
+ * http://www.opensource.org/licenses/gpl-license.html
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+/dts-v1/;
+#include "imx6dl.dtsi"
+#include "imx6qdl-ar6mx.dtsi"
+
+/{
+    model = "BCM AR6MXS Board";
+    compatible = "bcmcom,imx6dl-ar6mx", "fsl,imx6dl";
+};
+
+&ldb {
+	lvds-channel@0 {
+		crtc = "ipu1-di1";
+	};
+
+	lvds-channel@1 {
+		crtc = "ipu1-di0";
+	};
+};
+
+&mxcfb1 {
+    status = "okay";
+};
+
+&mxcfb2 {
+	status = "okay";
+};
