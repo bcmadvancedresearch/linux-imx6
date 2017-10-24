@@ -530,20 +530,7 @@ static int imx_wm8960_probe(struct platform_device *pdev)
 		goto fail;
 	}
 
-	ret = of_parse_phandle_with_fixed_args(pdev->dev.of_node, "gpr", 3,
-				0, &args);
-	if (ret) {
-		dev_err(&pdev->dev, "failed to get gpr property\n");
-		goto fail;
-	} else {
-		data->gpr = syscon_node_to_regmap(args.np);
-		if (IS_ERR(data->gpr)) {
-			ret = PTR_ERR(data->gpr);
-			dev_err(&pdev->dev, "failed to get gpr regmap\n");
-			goto fail;
-		}
-		regmap_update_bits(data->gpr, args.args[0], args.args[1], args.args[2]);
-	}
+	data->clk_frequency = clk_get_rate(data->codec_clk);
 
 	of_property_read_u32_array(pdev->dev.of_node, "hp-det", data->hp_det, 2);
 
