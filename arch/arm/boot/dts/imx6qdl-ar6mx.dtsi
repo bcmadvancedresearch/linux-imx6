@@ -173,8 +173,8 @@
 		codec-master;
 		hp-det = <4 0>;
 		audio-routing =
-			"Headset Jack", "HP_L",
-			"Headset Jack", "HP_R",
+			"Headphone Jack", "HP_L",
+			"Headphone Jack", "HP_R",
 			"LINPUT1", "MICB";
 		mux-int-port = <2>;
 		mux-ext-port = <3>;
