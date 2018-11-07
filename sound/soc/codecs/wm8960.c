@@ -445,10 +445,10 @@ static const struct snd_soc_dapm_route audio_paths[] = {
 
 	{ "Left Speaker PGA", NULL, "Left Output Mixer" },
 	{ "Right Speaker PGA", NULL, "Right Output Mixer" },
-
+#if 0
 	{ "Left Speaker Output", NULL, "Left Speaker PGA" },
 	{ "Right Speaker Output", NULL, "Right Speaker PGA" },
-
+#endif
 	{ "SPK_LN", NULL, "Left Speaker Output" },
 	{ "SPK_LP", NULL, "Left Speaker Output" },
 	{ "SPK_RN", NULL, "Right Speaker Output" },
