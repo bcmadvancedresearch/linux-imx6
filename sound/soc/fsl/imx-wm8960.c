@@ -85,7 +85,7 @@ static int hp_jack_status_check(void *data)
 
 	hp_status = gpio_get_value(imx_hp_jack_gpio.gpio);
 
-	if (hp_status != priv->hp_active_low) {
+	//if (hp_status != priv->hp_active_low) {
 		snd_soc_dapm_disable_pin(dapm, "Ext Spk");
 		if (priv->is_headset_jack) {
 			snd_soc_dapm_enable_pin(dapm, "Mic Jack");
@@ -93,7 +93,7 @@ static int hp_jack_status_check(void *data)
 		}
 		ret = imx_hp_jack_gpio.report;
 		snd_kctl_jack_report(priv->snd_card, priv->headphone_kctl, 1);
-	} else {
+	/*} else {
 		snd_soc_dapm_enable_pin(dapm, "Ext Spk");
 		if (priv->is_headset_jack) {
 			snd_soc_dapm_disable_pin(dapm, "Mic Jack");
@@ -101,7 +101,7 @@ static int hp_jack_status_check(void *data)
 		}
 		ret = 0;
 		snd_kctl_jack_report(priv->snd_card, priv->headphone_kctl, 0);
-	}
+	}*/
 
 	return ret;
 }
