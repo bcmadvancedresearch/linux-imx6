@@ -387,6 +387,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
 	imx6q-apf6dev.dtb \
 	imx6q-ar6mx.dtb \
 	imx6q-ar6mxcs.dtb \
+	imx6q-bh6mx.dtb \
 	imx6q-hb6mx.dtb \
 	imx6q-arm2.dtb \
 	imx6q-arm2-hsic.dtb \
