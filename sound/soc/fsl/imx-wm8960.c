@@ -362,13 +362,13 @@ static int imx_wm8960_late_probe(struct snd_soc_card *card)
 	snd_soc_update_bits(codec, WM8960_IFACE2, 1<<6, 1<<6);
 
 	/* GPIO1 used as headphone detect output */
-	snd_soc_update_bits(codec, WM8960_ADDCTL4, 7<<4, 3<<4);
+	//snd_soc_update_bits(codec, WM8960_ADDCTL4, 7<<4, 3<<4);
 
 	/* Enable headphone jack detect */
-	snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<6, 1<<6);
-	snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<5, data->hp_det[1]<<5);
-	snd_soc_update_bits(codec, WM8960_ADDCTL4, 3<<2, data->hp_det[0]<<2);
-	snd_soc_update_bits(codec, WM8960_ADDCTL1, 3, 3);
+	//snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<6, 1<<6);
+	//snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<5, data->hp_det[1]<<5);
+	//snd_soc_update_bits(codec, WM8960_ADDCTL4, 3<<2, data->hp_det[0]<<2);
+	//snd_soc_update_bits(codec, WM8960_ADDCTL1, 3, 3);
 
 	return 0;
 }
