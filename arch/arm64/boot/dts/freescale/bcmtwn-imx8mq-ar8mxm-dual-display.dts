@@ -1,0 +1,32 @@
+/*
+ */
+
+#include "bcmtwn-imx8mq-ar8mxm-lcdif.dts"
+
+/ {
+	display-subsystem {
+		status = "okay";
+	};
+
+	sound-hdmi {
+		status = "okay";
+	};
+};
+
+&irqsteer_dcss {
+	status = "okay";
+};
+
+&dcss {
+	status = "okay";
+};
+
+&hdmi {
+	status = "okay";
+};
+
+&lcdif {
+	status = "okay";
+	max-res = <1024>, <768>;
+};
+

@@ -1,0 +1,96 @@
+/*
+ */
+
+#include "bcmtwn-imx8mq-ar8mxm.dts"
+
+/ {
+	display-subsystem {
+		status = "disabled";
+	};
+
+	sound-hdmi {
+		status = "disabled";
+	};
+};
+
+&irqsteer_dcss {
+	status = "disabled";
+};
+
+&dcss {
+	status = "disabled";
+};
+
+&hdmi {
+	status = "disabled";
+};
+
+&lcdif {
+	status = "okay";
+	max-res = <1280>, <720>;
+
+	port@0 {
+		lcdif_mipi_dsi: mipi-dsi-endpoint {
+			remote-endpoint = <&mipi_dsi_in>;
+		};
+	};
+};
+
+&mipi_dsi_phy {
+	status = "okay";
+};
+
+&mipi_dsi {
+	status = "okay";
+	as_bridge;
+	sync-pol = <1>;
+	pwr-delay = <10>;
+
+	port@1 {
+		mipi_dsi_in: endpoint {
+			remote-endpoint = <&lcdif_mipi_dsi>;
+		};
+	};
+};
+
+&mipi_dsi_bridge {
+	status = "okay";
+
+	port@1 {
+		mipi_dsi_bridge_adv: endpoint {
+			remote-endpoint = <&adv7535_in>;
+		};
+	};
+};
+
+&iomuxc {
+	imx8mq-ar8mxm {
+		pinctrl_i2c1_dsi_ts_int: dsi_ts_int {
+			fsl,pins = <
+				MX8MQ_IOMUXC_NAND_CE2_B_GPIO3_IO3		0x16
+			>;
+		};
+    };
+};
+
+&i2c1 {
+	adv_bridge: adv7535@3d {
+		compatible = "adi,adv7533";
+		reg = <0x3d>;
+		adi,addr-cec = <0x3b>;
+		adi,dsi-lanes = <4>;
+		pinctrl-0 = <&pinctrl_i2c1_dsi_ts_int>;
+		interrupt-parent = <&gpio3>;
+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+
+		status = "okay";
+
+		port {
+			adv7535_in: endpoint {
+				remote-endpoint = <&mipi_dsi_bridge_adv>;
+			};
+		};
+	};
+};
+
+

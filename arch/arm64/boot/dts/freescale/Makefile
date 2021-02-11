@@ -107,6 +107,11 @@ dtb-$(CONFIG_ARCH_FSL_IMX8QXP) += fsl-imx8qxp-lpddr4-arm2.dtb \
 dtb-$(CONFIG_ARCH_FSL_IMX8MQ) += fsl-imx8mq-ddr3l-arm2.dtb \
 				 fsl-imx8mq-ddr4-arm2.dtb \
 				 fsl-imx8mq-ddr4-arm2-gpmi-nand.dtb \
+				 bcmtwn-imx8mq-ar8mxm.dtb	\
+				 bcmtwn-imx8mq-ar8mxm-dsi.dtb \
+				 bcmtwn-imx8mq-ar8mxm-lvds.dtb \
+				 bcmtwn-imx8mq-ar8mxm-lcdif.dtb \
+				 bcmtwn-imx8mq-ar8mxm-dual-display.dtb \
 				 fsl-imx8mq-evk.dtb \
 				 fsl-imx8mq-evk-b3.dtb \
 				 fsl-imx8mq-evk-m4.dtb \
