@@ -100,6 +100,7 @@ dtb-$(CONFIG_ARCH_FSL_IMX8MQ) += fsl-imx8mq-ddr3l-arm2.dtb \
 				 fsl-imx8mq-ddr4-arm2.dtb \
 				 fsl-imx8mq-ddr4-arm2-gpmi-nand.dtb \
 				 bcmtwn-imx8mq-ar8mxm.dtb	\
+				 bcmtwn-imx8mq-ar8mxm-m4.dtb	\
 				 bcmtwn-imx8mq-ar8mxm-dsi.dtb \
 				 bcmtwn-imx8mq-ar8mxm-lvds.dtb \
 				 bcmtwn-imx8mq-ar8mxm-lcdif.dtb \
