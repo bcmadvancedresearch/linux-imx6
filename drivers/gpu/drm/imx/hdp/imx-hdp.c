@@ -35,6 +35,12 @@
 struct drm_display_mode *g_mode;
 uint8_t g_default_mode = 3;
 static struct drm_display_mode edid_cea_modes[] = {
+        /* 2 - 1024x600@60Hz */
+        { DRM_MODE("1024x600", DRM_MODE_TYPE_DRIVER, 54000, 1024, 1048,
+                   1184, 1336, 0, 600, 601, 605, 629, 0,
+                   DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC),
+          .vrefresh = 60, .picture_aspect_ratio = HDMI_PICTURE_ASPECT_16_9, },
+
 	/* 3 - 720x480@60Hz */
 	{ DRM_MODE("720x480", DRM_MODE_TYPE_DRIVER, 27000, 720, 736,
 		   798, 858, 0, 480, 489, 495, 525, 0,
